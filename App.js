@@ -1,3 +1,4 @@
+/* eslint no-underscore-dangle: ["error", { "allowAfterThis": true }] */
 import React from 'react';
 import {
   StyleSheet,
@@ -54,6 +55,9 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     fontSize: 25,
   },
+  toDos: {
+    alignItems: 'center',
+  },
 });
 
 export default class App extends React.Component {
@@ -78,13 +82,12 @@ export default class App extends React.Component {
             style={styles.input}
             placeholder="New To Do"
             value={newToDo}
-            /* eslint no-underscore-dangle: ["error", { "allowAfterThis": true }] */
             onChangeText={this._controlNewToDo}
             placeholderTextColor="#999"
             returnKeyType="done"
             autoCorrect={false}
           />
-          <ScrollView>
+          <ScrollView contentContainerStyle={styles.toDos}>
             <ToDo />
           </ScrollView>
         </View>

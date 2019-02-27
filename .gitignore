@@ -5,3 +5,11 @@ npm-debug.*
 *.p12
 *.key
 *.mobileprovision
+
+.eslintcache
+.env
+.env.test
+
+.yarn-integrity
+
+.vscode/

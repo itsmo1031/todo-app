@@ -1,9 +1,18 @@
 import React from 'react';
 import {
-  StyleSheet, Text, View, StatusBar, TextInput, Dimensions, Platform,
+  StyleSheet,
+  Text,
+  View,
+  StatusBar,
+  TextInput,
+  Dimensions,
+  Platform,
+  ScrollView,
 } from 'react-native';
+import ToDo from './ToDo';
 
-const { height, width } = Dimensions.get('window');
+/* eslint: no-unused-vars */
+const { width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
@@ -39,16 +48,45 @@ const styles = StyleSheet.create({
       },
     }),
   },
+  input: {
+    padding: 20,
+    borderBottomColor: '#bbb',
+    borderBottomWidth: 1,
+    fontSize: 25,
+  },
 });
 
 export default class App extends React.Component {
+  state = {
+    newToDo: '',
+  };
+
+  _controlNewToDo = (text) => {
+    this.setState({
+      newToDo: text,
+    });
+  };
+
   render() {
+    const { newToDo } = this.state;
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
         <Text style={styles.title}>Next To Do</Text>
         <View style={styles.card}>
-          <TextInput style={styles.input} placeholder="New To Do" />
+          <TextInput
+            style={styles.input}
+            placeholder="New To Do"
+            value={newToDo}
+            /* eslint no-underscore-dangle: ["error", { "allowAfterThis": true }] */
+            onChangeText={this._controlNewToDo}
+            placeholderTextColor="#999"
+            returnKeyType="done"
+            autoCorrect={false}
+          />
+          <ScrollView>
+            <ToDo />
+          </ScrollView>
         </View>
       </View>
     );
